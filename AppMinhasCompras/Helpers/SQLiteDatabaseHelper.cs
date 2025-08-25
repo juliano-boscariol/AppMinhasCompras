@@ -11,6 +11,8 @@ namespace AppMinhasCompras.Helpers
     armazena as informações da melhor forma.
     Usos: apps sem necessidade de segurança, cash, etc.*/
 
+    // Na Agenda 02 - Programação da classe do Banco de Dados antes da implementação do CRUD
+
 
     // Mudar de internal para public class
     public class SQLiteDatabaseHelper
