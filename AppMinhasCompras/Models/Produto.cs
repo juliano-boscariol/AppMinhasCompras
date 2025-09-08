@@ -11,5 +11,7 @@ namespace AppMinhasCompras.Models
         public string Descricao { get; set; }
         public double Quantidade { get; set; }
         public double Preco {  get; set; }
+        // O "=>" declara o que o get irá retornar
+        public double Total { get => Quantidade * Preco; }
     }
 }

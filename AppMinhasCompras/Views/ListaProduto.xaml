@@ -5,14 +5,46 @@
              Title="Minhas Compras">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Somar"/>
+        <ToolbarItem Text="Somar"
+                     Clicked="Clicked_Somar"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!-- Adicionando a barra de pesquisa e a listagem dos produtos -->
+        <SearchBar x:Name="txt_search"
+                   Placeholder="Busca de produtos"
+                   TextChanged="txt_search_TextChanged"/>
+        <ListView x:Name="lista_produtos">
+            <!-- Cabeçalho -->
+            <ListView.Header>
+                <Grid ColumnDefinitions="*, *, *, *, *">
+                    <Label Grid.Column="0" Text="ID"/>
+                    <Label Grid.Column="1" Text="Descrição"/>
+                    <Label Grid.Column="2" Text="Preço"/>
+                    <Label Grid.Column="3" Text="Quantidade"/>
+                    <Label Grid.Column="4" Text="Total"/>
+                </Grid>                      
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate> <!-- Equivalente à TR da Table em HTML/PHP-->
+                    <ViewCell>
+                        <!--Ações de contexto: Remover-->
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Remover"
+                                      Clicked="MenuItem_Clicked"></MenuItem>
+                        </ViewCell.ContextActions> <!-- Utilizamos o Binding Context para add os dados-->
+                        <Grid ColumnDefinitions="*, *, *, *, *">
+                            <Label Grid.Column="0" Text="{Binding Id}"/>
+                            <Label Grid.Column="1" Text="{Binding Descricao}"/>
+                            <Label Grid.Column="2" Text="{Binding Preco}"/>
+                            <Label Grid.Column="3" Text="{Binding Quantidade}"/>
+                            <Label Grid.Column="4" Text="{Binding Total}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>                
+            </ListView.ItemTemplate>
+                        
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

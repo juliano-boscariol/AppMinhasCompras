@@ -57,7 +57,7 @@ namespace AppMinhasCompras.Helpers
         // Para fazer a busca Search
         public Task<List<Produto>> Search (string q)
         {
-            string sql = "SELECT * Produto WHERE Descricao LIKE '%" + q + "%'";
+            string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + q + "%'";
 
             return _connection.QueryAsync<Produto>(sql);
         }
