@@ -22,6 +22,8 @@ public partial class ListaProduto : ContentPage
     {
 		try
 		{
+			lista.Clear(); // limpa a ObservableCollection
+			
 			List<Produto> tmp = await App.DB.GetAll();
 
 			// Para cada item na lista, chama-se a ObservableCollection
