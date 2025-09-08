@@ -24,7 +24,7 @@ public partial class NovoProduto : ContentPage
 
             await App.DB.Insert(p);
             await DisplayAlert("Sucesso!", "Seu produto foi cadastrado", "OK");
-
+            await Navigation.PopAsync(); //Adicionei para voltar à página inicial também
         }
         catch (Exception ex)
         {

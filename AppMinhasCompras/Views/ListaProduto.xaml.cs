@@ -110,4 +110,22 @@ public partial class ListaProduto : ContentPage
             await DisplayAlert("Ops", ex.Message, "OK");
         }
     }
+
+    private void lista_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+		try
+		{
+			Produto p = e.SelectedItem as Produto;
+
+			// Irá mandar as informações do produto p (selecionado e) para a página de Edição
+			Navigation.PushAsync(new Views.EditarProduto
+			{
+				BindingContext = p,
+			});
+		}
+        catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
 }

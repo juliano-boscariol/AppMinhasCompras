@@ -15,7 +15,7 @@
         <SearchBar x:Name="txt_search"
                    Placeholder="Busca de produtos"
                    TextChanged="txt_search_TextChanged"/>
-        <ListView x:Name="lista_produtos">
+        <ListView x:Name="lista_produtos" ItemSelected="lista_produtos_ItemSelected">
             <!-- Cabeçalho -->
             <ListView.Header>
                 <Grid ColumnDefinitions="*, *, *, *, *">
