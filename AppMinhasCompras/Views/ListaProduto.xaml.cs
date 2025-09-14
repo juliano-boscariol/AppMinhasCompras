@@ -77,6 +77,40 @@ public partial class ListaProduto : ContentPage
 		}
     }
 
+    private void Clicked_Relatorio(object sender, EventArgs e)
+    {
+		try
+		{
+			double acougue = lista
+				.Where(i => i.Categoria == "Açougue")
+				.Sum (i => i.Total);
+			double higiene = lista
+				.Where(i => i.Categoria == "Higiene")
+                .Sum(i => i.Total);
+			double hortifruti = lista
+                .Where(i => i.Categoria == "Hortifruti")
+                .Sum(i => i.Total);
+			double mercearia = lista
+                .Where(i => i.Categoria == "Mercearia")
+                .Sum(i => i.Total);
+			double limpeza = lista
+                .Where(i => i.Categoria == "Limpeza")
+                .Sum(i => i.Total);
+			double total = lista.Sum(i => i.Total);
+
+            string msg = $"Açougue: {acougue:C}\n\n" + $"Higiene: {higiene:C}\n\n"
+				+ $"Hortifruti: {hortifruti:C} \n\n" + $"Limpeza: {limpeza:C}\n\n"
+				+ $"Mercearia: {mercearia:C} \n\n" + $"Total: {total:C}";
+
+            DisplayAlert("Relatório por Categoria", msg, "OK");
+
+        } 
+		catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
     private void Clicked_Somar(object sender, EventArgs e)
     {
 		try
@@ -159,4 +193,6 @@ public partial class ListaProduto : ContentPage
 			lista_produtos.IsRefreshing = false;
 		}
     }
+
+    
 }

@@ -16,15 +16,22 @@ public partial class EditarProduto : ContentPage
             //Programação do Update
             Produto produto_anexado = BindingContext as Produto;
 
-            Produto p = new Produto
+            produto_anexado.Descricao = txt_descricao.Text;
+            produto_anexado.Quantidade = Convert.ToDouble(txt_quantidade.Text);
+            produto_anexado.Preco = Convert.ToDouble(txt_preco.Text);
+            produto_anexado.Categoria = picker_categoria.SelectedItem?.ToString();
+
+            /*Produto p = new Produto
             {
                 Id = produto_anexado.Id,
                 Descricao = txt_descricao.Text,
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
                 Preco = Convert.ToDouble(txt_preco.Text),
-            };
+                Categoria = picker_categoria.SelectedItem?.ToString()
+            }; Esse é jeito que estava antes e não estava atualizando o campo Categoria
+            que foi criado posteriormente*/
 
-            await App.DB.Update(p);
+            await App.DB.Update(produto_anexado);
             await DisplayAlert("Sucesso!", "Seu produto foi atualizado!", "OK");
             await Navigation.PopAsync(); // Retorna à página inicial
 

@@ -12,6 +12,7 @@ namespace AppMinhasCompras.Models
         string _descricao;
         double _quantidade;
         double _preco;
+        string _categoria;
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -50,6 +51,20 @@ namespace AppMinhasCompras.Models
                 _preco = value;
             }
         }
+
+        public string Categoria
+        {
+            get => _categoria;
+            set
+            {
+                if (value == null) // se for vazio, dispara a exceção
+                {
+                    throw new Exception("Por favor, selecione a categoria do produto.");
+                }
+                _categoria = value;
+            }
+        }
+
 
         // O "=>" declara o que o get irá retornar
         public double Total { get => Quantidade * Preco; }

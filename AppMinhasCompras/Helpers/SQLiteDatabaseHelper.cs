@@ -36,10 +36,10 @@ namespace AppMinhasCompras.Helpers
         public Task<List<Produto>> Update(Produto p)
         {
             //Não precisa escrever assim igual no php/SGBD - dá para simplificá-lo
-            string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?";
+            string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=?, Categoria=? WHERE Id=?";
             
             return _connection.QueryAsync<Produto>(sql,
-                p.Descricao, p.Quantidade, p.Preco, p.Id);
+                p.Descricao, p.Quantidade, p.Preco, p.Categoria, p.Id);
         }
         public Task<int> Delete(int id) 
         {
@@ -57,7 +57,7 @@ namespace AppMinhasCompras.Helpers
         // Para fazer a busca Search
         public Task<List<Produto>> Search (string q)
         {
-            string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + q + "%'";
+            string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + q + "%'" + "OR CATEGORIA LIKE '%" + q + "%'";
 
             return _connection.QueryAsync<Produto>(sql);
         }

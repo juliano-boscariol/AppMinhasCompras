@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMinhasCompras.Views.NovoProduto"
-             Title="Novo Produto">
+             Title="Novo Produto"
+             xmlns:local="clr-namespace:AppMinhasCompras.Models">
 
     <!-- Ainda na Agenda 03, iniciamos "levemente" a programação das views NovoProduto e ListaProduto-->
     
@@ -13,6 +14,10 @@
     <VerticalStackLayout Spacing="10" Padding="10">
         <Label Text="Descrição do Produto"/>
         <Entry x:Name="txt_descricao"/>
+        <Label Text="Categoria"/>
+        <Picker x:Name="picker_categoria"
+                Title="Selecione a categoria"
+                ItemsSource="{x:Static local:Categorias.Lista_categorias}"/>
         <Label Text="Quantidade"/>
         <Entry x:Name="txt_quantidade" Keyboard="Numeric"/>
         <Label Text="Preço unitário"/>
