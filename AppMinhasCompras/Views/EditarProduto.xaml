@@ -5,7 +5,11 @@
              Title="{Binding Descricao}"> <!-- O nome do produto a
     a ser editado já apaarecerá aqui-->
 
-        <ContentPage.ToolbarItems>
+    <!-- Na Agenda 05, criamos a página de Edição do Produto. Ao clicar no produto, o 
+    usuário será encaminhado para cá e, através do Binding Context, serão exibidos os dados do produto selecionado -->
+    
+    
+    <ContentPage.ToolbarItems>
             <ToolbarItem Text="Salvar" Clicked="Clicked_Salvar"/>
         </ContentPage.ToolbarItems>
 

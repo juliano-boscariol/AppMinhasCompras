@@ -1,4 +1,5 @@
-﻿using AppMinhasCompras.Helpers;
+﻿using System.Globalization;
+using AppMinhasCompras.Helpers;
 
 namespace AppMinhasCompras
 {
@@ -31,8 +32,12 @@ namespace AppMinhasCompras
         {
             InitializeComponent();
 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR"); //Add a Culture como pt-BR
+            //Formata números, datas e R$.
+
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new Views.ListaProduto());
+
         }
     }
 }

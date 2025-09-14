@@ -7,7 +7,8 @@ namespace AppMinhasCompras.Views;
 
 public partial class ListaProduto : ContentPage
 {
-	// Maior integração com a interface gráfica = Atualizações automáticas na tela
+	/* Ao invés do ListView, utilizamos o ObservableCollection, pois possui
+	maior integração com a interface gráfica = Atualizações automáticas na tela */
 	ObservableCollection<Produto> lista = new ObservableCollection<Produto>();
 
 	public ListaProduto()
@@ -58,6 +59,8 @@ public partial class ListaProduto : ContentPage
 			// A variável "e" diz respeito ao texto digitado na busca
 			string q = e.NewTextValue;
 
+			lista_produtos.IsRefreshing = true; //IsRefreshing é o ícone de looping carregando
+
 			lista.Clear(); // impede o acúmulo dos itens
 
 			List<Produto> tmp = await App.DB.Search(q);
@@ -66,8 +69,12 @@ public partial class ListaProduto : ContentPage
 		}
         catch (Exception ex)
         {
-            DisplayAlert("Ops", ex.Message, "OK");
+            await DisplayAlert("Ops", ex.Message, "OK");
         }
+		finally
+		{
+			lista_produtos.IsRefreshing = false;
+		}
     }
 
     private void Clicked_Somar(object sender, EventArgs e)
@@ -129,5 +136,27 @@ public partial class ListaProduto : ContentPage
         {
             DisplayAlert("Ops", ex.Message, "OK");
         }
+    }
+
+    private async void lista_produtos_Refreshing(object sender, EventArgs e)
+    {
+        try //Recarrega a lista quando a tela é puxada para baixo e add o ícone do looping
+        {
+            lista.Clear();
+
+            List<Produto> tmp = await App.DB.GetAll();
+
+            tmp.ForEach(i => lista.Add(i));
+
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+		finally // faz o ícone de carregando sair depois que a página for atualizada
+		// o finally é executado tanto se cair no try como no catch
+		{
+			lista_produtos.IsRefreshing = false;
+		}
     }
 }
